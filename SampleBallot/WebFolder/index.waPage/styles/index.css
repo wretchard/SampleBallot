@@ -12,11 +12,12 @@
 #componentMain {
 	 z-index: 2;
 	 width: 321px;
-	 height: 416px;
-	 top: 175px;
-	 left: 234px;
+	 height: 418px;
+	 top: 174px;
+	 left: 34px;
 	
 	 position: absolute;
+	 background-color: rgba(0, 0, 0, 0);
 	 
 }
 
