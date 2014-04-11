@@ -21,18 +21,28 @@ function constructor (id) {
 		voterFindInfo(infoParams.address, infoParams.elecID)
 
 	// @region namespaceDeclaration// @startlock
-	var contestsGrid = {};	// @dataGrid
+	var buttonCandidates = {};	// @button
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
 
-	contestsGrid.onRowClick = function contestsGrid_onRowClick (event)// @startlock
+	buttonCandidates.click = function buttonCandidates_click (event)// @startlock
 	{// @endlock
-		alert($comp.sources.varContests.type)
+		
+//		var findInfoParams={}
+//		findInfoParams.address=$comp.sourcesVar.varNorm
+//		findInfoParams.elecID=$comp.sources.varElection.id
+//				$$('componentMain').loadComponent({
+//	    		path: "/Components/Contests.waComponent",
+//	    		userData: { infoParams: findInfoParams}
+//				});		
+
+
+
 	};// @lock
 
 	// @region eventManager// @startlock
-	WAF.addListener(this.id + "_contestsGrid", "onRowClick", contestsGrid.onRowClick, "WAF");
+	WAF.addListener(this.id + "_buttonCandidates", "click", buttonCandidates.click, "WAF");
 	// @endregion// @endlock
 
 	};// @lock
@@ -98,7 +108,7 @@ function renderResults(response, rawResponse) {
 				break;
 			
 			default:
-				alert(key);			
+//				alert(key);			
 		}
   	}}	
 }
