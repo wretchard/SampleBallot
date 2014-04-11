@@ -147,3 +147,9 @@ border-bottom-left-radius: 0px;
 	border-bottom-width: 1px;
 }
 
+
+
+.waf-theme.default .waf-button.waf-role-smallButton {
+	font-size: 10px;
+}
+

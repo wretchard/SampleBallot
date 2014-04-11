@@ -11,38 +11,64 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
-
-		var infoParams=data.userData.infoParams;
 //		debugger;
+		var infoParams=data.userData.infoParams;
+
 		if (infoParams !== null) {
 		$comp.sourcesVar.varLabel = "Contests in your area";
 		$comp.sources.varLabel.sync();
 		}
 		voterFindInfo(infoParams.address, infoParams.elecID)
 
+
+
 	// @region namespaceDeclaration// @startlock
+	var buttonBallot = {};	// @button
+	var buttonVote = {};	// @button
 	var buttonCandidates = {};	// @button
+	var buttonContest = {};	// @button
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
 
+	buttonBallot.click = function buttonBallot_click (event)// @startlock
+	{// @endlock
+		$('#componentMain_dataGridContests').hide()
+		$('#componentMain_dataGridCandidates').hide()
+		$('#componentMain_dataGridVote').hide()
+		$('#componentMain_dataGridBallot').show()
+	};// @lock
+
+	buttonVote.click = function buttonVote_click (event)// @startlock
+	{// @endlock
+		$('#componentMain_dataGridContests').hide()
+		$('#componentMain_dataGridCandidates').hide()
+		$('#componentMain_dataGridVote').show()
+		$('#componentMain_dataGridBallot').hide()
+	};// @lock
+
 	buttonCandidates.click = function buttonCandidates_click (event)// @startlock
 	{// @endlock
-		
-//		var findInfoParams={}
-//		findInfoParams.address=$comp.sourcesVar.varNorm
-//		findInfoParams.elecID=$comp.sources.varElection.id
-//				$$('componentMain').loadComponent({
-//	    		path: "/Components/Contests.waComponent",
-//	    		userData: { infoParams: findInfoParams}
-//				});		
+		$('#componentMain_dataGridContests').hide()
+		$('#componentMain_dataGridCandidates').show()
+		$('#componentMain_dataGridVote').hide()
+		$('#componentMain_dataGridBallot').hide()
+	};// @lock
 
-
+	buttonContest.click = function buttonContest_click (event)// @startlock
+	{// @endlock
+		$('#componentMain_dataGridContests').show()
+		$('#componentMain_dataGridCandidates').hide()
+		$('#componentMain_dataGridVote').hide()
+		$('#componentMain_dataGridBallot').hide()
 
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_buttonBallot", "click", buttonBallot.click, "WAF");
+	WAF.addListener(this.id + "_buttonVote", "click", buttonVote.click, "WAF");
 	WAF.addListener(this.id + "_buttonCandidates", "click", buttonCandidates.click, "WAF");
+	WAF.addListener(this.id + "_buttonContest", "click", buttonContest.click, "WAF");
 	// @endregion// @endlock
 
 	};// @lock
@@ -78,8 +104,9 @@ req.execute(callback);
 
  
 function renderResults(response, rawResponse) {
-//	debugger;
-//	strOutput='';
+
+	//storing for later use
+	sources.componentMain_varParams = response;
 	for (var key in response) {
   		if (response.hasOwnProperty(key)) {
 //  		debugger;
