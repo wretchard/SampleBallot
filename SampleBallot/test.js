@@ -19,8 +19,8 @@
 //}
 
 //require('refKeys').google_api_key()
-//varAddress="1600 Pennsylvania Ave NW Washington DC"
-//var e = require('refKeys').voterInfo(varAddress)
+varAddress="675 N Wisconsin St Pomona CA"
+var e = require('refKeys').voterInfo(varAddress)
 //e;
 //function stringFixer(objInput) {
 //	strOutput='';
@@ -40,6 +40,3 @@
   
 //stringFixer(x);
 
-var fruits =  [{"id": "4000", "name": "U.S. 2012 General Election", "electionDay" : "2012-11-06"}]
-//fruits.push([{"name": "Smiz", "age": 4, "job" : "Trator" }]) 
-fruits

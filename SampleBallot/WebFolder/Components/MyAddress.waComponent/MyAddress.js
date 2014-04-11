@@ -16,24 +16,24 @@ function constructor (id) {
 	var buttonVerify = {};	// @button
 	// @endregion// @endlock
 
-function lookup(electionID, address, callback) {
-/**
-* Election ID for which to fetch voter info.
-* @type {number}
-*/
-var electionId = electionID;
-   
-        /**
-         * Request object for given parameters.
-         * @type {gapi.client.HttpRequest}
-         */
-        var req = gapi.client.request({
-            'path' : '/civicinfo/us_v1/voterinfo/' + electionId + '/lookup',
-            'method' : 'POST', // Required. The API does not allow GET requests.
-            'body' : {'address' : address}
-        });
-       req.execute(callback);
-}
+//function lookup(electionID, address, callback) {
+///**
+//* Election ID for which to fetch voter info.
+//* @type {number}
+//*/
+//var electionId = electionID;
+//   
+//        /**
+//         * Request object for given parameters.
+//         * @type {gapi.client.HttpRequest}
+//         */
+//        var req = gapi.client.request({
+//            'path' : '/civicinfo/us_v1/voterinfo/' + electionId + '/lookup',
+//            'method' : 'POST', // Required. The API does not allow GET requests.
+//            'body' : {'address' : address}
+//        });
+//       req.execute(callback);
+//}
 
 function stringFixer(objInput) {
 	strOutput='';

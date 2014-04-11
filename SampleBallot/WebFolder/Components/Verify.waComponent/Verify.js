@@ -13,15 +13,24 @@ function constructor (id) {
 	this.load = function (data) {// @lock
 	var voterInfo=data.userData.voterInfo;
 	var election=voterInfo.election;
+	//check to see if new data is up
+	if (election.id=="4000") {
+	election.id = "2000",
+ 	election.name ="VIP Test Election",
+    election.electionDay = "2013-06-06"
+	}
+    
 	var kind = voterInfo.kind;
 	var normalizedInput=voterInfo.normalizedInput;
 	var success = voterInfo.status;
 	var str=''
-
 	str=stringFixer(normalizedInput)
 	$comp.sourcesVar.varNorm = str.toUpperCase()
 	$comp.sources.varNorm.sync();
+	$comp.sourcesVar.varMessage="Address Verified As";
+	$comp.sources.varMessage.sync();
 	$comp.sources.varElection.addNewElement(election)
+
 //	for( var i in election ) 
 //	{ if (election.hasOwnProperty(i))
 //		{$comp.sourcesVar.varElection.addNewElement(election[i]); } 
@@ -38,27 +47,15 @@ function constructor (id) {
 
 	buttonVerify.click = function buttonVerify_click (event)// @startlock
 	{// @endlock
-		var strAddress='';	
-		strAddress =($comp.sourcesVar.varAddress1 + ' ' + $comp.sourcesVar.varAddress2 + ' ' + $comp.sourcesVar.varCity + ' ' + $comp.sourcesVar.varState).replace(/\s{2,}/g,' ');
-		refKeys.voterInfoAsync({
-			onSuccess: function(event) {
-				if (event.status == 'success') {
+		
+		var findInfoParams={}
+		findInfoParams.address=$comp.sourcesVar.varNorm
+		findInfoParams.elecID=$comp.sources.varElection.id
 				$$('componentMain').loadComponent({
-	    		path: "/Components/Verify.waComponent",
-	    		userData: { voterInfo: event}
+	    		path: "/Components/Contests.waComponent",
+	    		userData: { infoParams: findInfoParams}
+				});		
 
-				})}
-				else {$comp.sourcesVar.varMessage = 'It cannot be parsed';
-				$comp.sources.varMessage.sync();
-				}
-			},
-			onError: function(error) {
-				$comp.sourcesVar.varMessage =event.status;
-				$comp.sources.varMessage.sync();
-			},
-			params: [ strAddress]	
-			});
-//		$$('componentMain').loadComponent("/Components/Verify.waComponent");
 
 
 	};// @lock
@@ -85,3 +82,8 @@ function stringFixer(objInput) {
 	strOutput=strOutput.trim();	
 	return strOutput.replace(/\s{2,}/g,' ')
 }
+
+
+
+
+
