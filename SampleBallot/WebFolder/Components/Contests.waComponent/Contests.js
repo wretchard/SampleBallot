@@ -33,6 +33,7 @@ function constructor (id) {
 
 	buttonBallot.click = function buttonBallot_click (event)// @startlock
 	{// @endlock
+		reLabel("Ballot");
 		$('#componentMain_dataGridContests').hide()
 		$('#componentMain_dataGridCandidates').hide()
 		$('#componentMain_dataGridVote').hide()
@@ -41,6 +42,7 @@ function constructor (id) {
 
 	buttonVote.click = function buttonVote_click (event)// @startlock
 	{// @endlock
+		reLabel("Vote");
 		$('#componentMain_dataGridContests').hide()
 		$('#componentMain_dataGridCandidates').hide()
 		$('#componentMain_dataGridVote').show()
@@ -49,6 +51,18 @@ function constructor (id) {
 
 	buttonCandidates.click = function buttonCandidates_click (event)// @startlock
 	{// @endlock
+		reLabel("Candidates")
+//		z=[]
+		v=sources.componentMain_varParams.contests[sources.componentMain_varContests.id].candidates;
+		for (var i=0;i<v.length;i++) {
+			debugger;
+			sources.componentMain_varCandidates.addNewElement({vote:null, party:v[i].party, name:v[i].name})	
+//			z.push({vote:null, party:v[i].party, name:v[i].name});
+		}
+//		sources.componentMain_varCandidates=z;
+//		sources.componentMain_varCandidates
+		
+		
 		$('#componentMain_dataGridContests').hide()
 		$('#componentMain_dataGridCandidates').show()
 		$('#componentMain_dataGridVote').hide()
@@ -57,6 +71,7 @@ function constructor (id) {
 
 	buttonContest.click = function buttonContest_click (event)// @startlock
 	{// @endlock
+		reLabel("Contests");
 		$('#componentMain_dataGridContests').show()
 		$('#componentMain_dataGridCandidates').hide()
 		$('#componentMain_dataGridVote').hide()
@@ -161,9 +176,9 @@ function renderContests(objContests) {
 		var varReferendumSubtitle=varContest['referendumSubtitle'];
 		var varReferendumUrl=varContest['referendumUrl'];
 		vContest={};
-		vContest.id=i + 1;
-//		debugger;
-		vContest.type=(i + 1).toString() + "." + varType;
+		vContest.id=i;
+
+		vContest.type=(i).toString() + "." + varType;
 		if (varType == 'Referendum') {
 			vContest.name=varRefendumTitle;
 		}
@@ -176,4 +191,8 @@ function renderContests(objContests) {
 //	debugger;
 //	sources.componentMain_varContests=vContest;
 	
+}
+
+function reLabel(vValue) {
+	$$('componentMain_richTextLabel').setValue(vValue)
 }
