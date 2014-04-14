@@ -3,6 +3,12 @@
 	Changes to this CSS file might be lost when it is regenerated.
 */
 
+#{id}dataGridCandidates .waf-dataGrid-row {
+	 font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	 font-size: 10px;
+	 
+}
+
 #{id} {
 	 background-color: rgb(229, 229, 229);
 	 

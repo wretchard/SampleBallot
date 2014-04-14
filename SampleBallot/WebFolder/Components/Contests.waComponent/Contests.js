@@ -23,6 +23,7 @@ function constructor (id) {
 
 
 	// @region namespaceDeclaration// @startlock
+	var dataGridCandidates = {};	// @dataGrid
 	var buttonBallot = {};	// @button
 	var buttonVote = {};	// @button
 	var buttonCandidates = {};	// @button
@@ -30,6 +31,12 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	dataGridCandidates.onRowClick = function dataGridCandidates_onRowClick (event)// @startlock
+	{// @endlock
+//		sources.componentMain_varCandidates.Vote= !sources.componentMain_varCandidates.Vote;
+//		sources.componentMain_varCandidates.sync();
+	};// @lock
 
 	buttonBallot.click = function buttonBallot_click (event)// @startlock
 	{// @endlock
@@ -51,16 +58,23 @@ function constructor (id) {
 
 	buttonCandidates.click = function buttonCandidates_click (event)// @startlock
 	{// @endlock
-		reLabel("Candidates")
-//		z=[]
+		reLabel("Candidates and Referendums")
+		if (sources.componentMain_varParams.contests[sources.componentMain_varContests.id].type !=='Referendum') {
 		v=sources.componentMain_varParams.contests[sources.componentMain_varContests.id].candidates;
 		for (var i=0;i<v.length;i++) {
-			debugger;
-			sources.componentMain_varCandidates.addNewElement({vote:null, party:v[i].party, name:v[i].name})	
-//			z.push({vote:null, party:v[i].party, name:v[i].name});
+			var x={};
+			x.Vote=null;
+			x.Party=v[i].party;
+			x.Name=v[i].name;
+			sources.componentMain_varCandidates.addNewElement(x)	
+
+		} }
+		else
+		{
+			
 		}
 //		sources.componentMain_varCandidates=z;
-//		sources.componentMain_varCandidates
+//		sources.componentMain_varCandidates.sync();
 		
 		
 		$('#componentMain_dataGridContests').hide()
@@ -80,6 +94,7 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_dataGridCandidates", "onRowClick", dataGridCandidates.onRowClick, "WAF");
 	WAF.addListener(this.id + "_buttonBallot", "click", buttonBallot.click, "WAF");
 	WAF.addListener(this.id + "_buttonVote", "click", buttonVote.click, "WAF");
 	WAF.addListener(this.id + "_buttonCandidates", "click", buttonCandidates.click, "WAF");
