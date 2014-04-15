@@ -23,7 +23,6 @@ function constructor (id) {
 
 
 	// @region namespaceDeclaration// @startlock
-	var dataGridCandidates = {};	// @dataGrid
 	var buttonBallot = {};	// @button
 	var buttonVote = {};	// @button
 	var buttonCandidates = {};	// @button
@@ -32,17 +31,11 @@ function constructor (id) {
 
 	// eventHandlers// @lock
 
-	dataGridCandidates.onRowClick = function dataGridCandidates_onRowClick (event)// @startlock
-	{// @endlock
-//		sources.componentMain_varCandidates.Vote= !sources.componentMain_varCandidates.Vote;
-//		sources.componentMain_varCandidates.sync();
-	};// @lock
-
 	buttonBallot.click = function buttonBallot_click (event)// @startlock
 	{// @endlock
 		reLabel("Ballot");
 		$('#componentMain_dataGridContests').hide()
-		$('#componentMain_dataGridCandidates').hide()
+		$('#componentMain_matrixCandidates').hide()
 		$('#componentMain_dataGridVote').hide()
 		$('#componentMain_dataGridBallot').show()
 	};// @lock
@@ -51,7 +44,7 @@ function constructor (id) {
 	{// @endlock
 		reLabel("Vote");
 		$('#componentMain_dataGridContests').hide()
-		$('#componentMain_dataGridCandidates').hide()
+		$('#componentMain_matrixCandidates').hide()
 		$('#componentMain_dataGridVote').show()
 		$('#componentMain_dataGridBallot').hide()
 	};// @lock
@@ -59,7 +52,7 @@ function constructor (id) {
 	buttonCandidates.click = function buttonCandidates_click (event)// @startlock
 	{// @endlock
 		reLabel("Candidates and Referendums")
-		if (sources.componentMain_varParams.contests[sources.componentMain_varContests.id].type !=='Referendum') {
+		if (sources.componentMain_varCandidates.length == 0 && sources.componentMain_varParams.contests[sources.componentMain_varContests.id].type !=='Referendum') {
 		v=sources.componentMain_varParams.contests[sources.componentMain_varContests.id].candidates;
 		for (var i=0;i<v.length;i++) {
 			var x={};
@@ -78,7 +71,7 @@ function constructor (id) {
 		
 		
 		$('#componentMain_dataGridContests').hide()
-		$('#componentMain_dataGridCandidates').show()
+		$('#componentMain_matrixCandidates').show()
 		$('#componentMain_dataGridVote').hide()
 		$('#componentMain_dataGridBallot').hide()
 	};// @lock
@@ -87,14 +80,13 @@ function constructor (id) {
 	{// @endlock
 		reLabel("Contests");
 		$('#componentMain_dataGridContests').show()
-		$('#componentMain_dataGridCandidates').hide()
+		$('#componentMain_matrixCandidates').hide()
 		$('#componentMain_dataGridVote').hide()
 		$('#componentMain_dataGridBallot').hide()
 
 	};// @lock
 
 	// @region eventManager// @startlock
-	WAF.addListener(this.id + "_dataGridCandidates", "onRowClick", dataGridCandidates.onRowClick, "WAF");
 	WAF.addListener(this.id + "_buttonBallot", "click", buttonBallot.click, "WAF");
 	WAF.addListener(this.id + "_buttonVote", "click", buttonVote.click, "WAF");
 	WAF.addListener(this.id + "_buttonCandidates", "click", buttonCandidates.click, "WAF");
