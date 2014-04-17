@@ -36,32 +36,38 @@ function constructor (id) {
 		reLabel("Ballot");
 		$('#componentMain_dataGridContests').hide()
 		$('#componentMain_matrixCandidates').hide()
-		$('#componentMain_dataGridVote').hide()
 		$('#componentMain_dataGridBallot').show()
 	};// @lock
 
 	buttonVote.click = function buttonVote_click (event)// @startlock
 	{// @endlock
-		reLabel("Vote");
-		$('#componentMain_dataGridContests').hide()
-		$('#componentMain_matrixCandidates').hide()
-		$('#componentMain_dataGridVote').show()
-		$('#componentMain_dataGridBallot').hide()
+		sources.componentMain_varCandidates.query("Vote=true")
+		//add to ballot
+		
+
 	};// @lock
 
 	buttonCandidates.click = function buttonCandidates_click (event)// @startlock
 	{// @endlock
 		reLabel("Candidates and Referendums")
-		if (sources.componentMain_varCandidates.length == 0 && sources.componentMain_varParams.contests[sources.componentMain_varContests.id].type !=='Referendum') {
+		sources.componentMain_varCandidates.query("id=null")
+		if (sources.componentMain_varCandidates.length == 0 && sources.componentMain_varParams.contests[sources.componentMain_varContests.id].type !=='Referendum') 
+		{
+		d=sources.componentMain_varParams.contests[sources.componentMain_varContests.id].district;
 		v=sources.componentMain_varParams.contests[sources.componentMain_varContests.id].candidates;
+		o=sources.componentMain_varParams.contests[sources.componentMain_varContests.id].office;
 		for (var i=0;i<v.length;i++) {
 			var x={};
+			x.id=i;
 			x.Vote=null;
 			x.Party=v[i].party;
 			x.Name=v[i].name;
+			x.ElectionID =sources.componentMain_varParams.election.id + ':' + sources.componentMain_varParams.election.name;
+			x.Identifier=d.id + ':' + o;
 			sources.componentMain_varCandidates.addNewElement(x)	
 
-		} }
+		} 
+		}
 		else
 		{
 			
@@ -72,7 +78,6 @@ function constructor (id) {
 		
 		$('#componentMain_dataGridContests').hide()
 		$('#componentMain_matrixCandidates').show()
-		$('#componentMain_dataGridVote').hide()
 		$('#componentMain_dataGridBallot').hide()
 	};// @lock
 
@@ -81,7 +86,6 @@ function constructor (id) {
 		reLabel("Contests");
 		$('#componentMain_dataGridContests').show()
 		$('#componentMain_matrixCandidates').hide()
-		$('#componentMain_dataGridVote').hide()
 		$('#componentMain_dataGridBallot').hide()
 
 	};// @lock
@@ -197,6 +201,7 @@ function renderContests(objContests) {
 	}
 //	debugger;
 //	sources.componentMain_varContests=vContest;
+
 	
 }
 

@@ -4,15 +4,15 @@
 */
 
 #{id}matrixCandidates .waf-widget.waf-clone-{id}textFieldName {
+	 z-index: 6;
 	 position: absolute;
 	 font-size: 10px;
-	 z-index: 6;
 	 
 }
 
 #{id}matrixCandidates .waf-widget.waf-clone-{id}checkboxVote {
-	 position: absolute;
 	 z-index: 2;
+	 position: absolute;
 	 
 }
 
@@ -30,6 +30,7 @@
 	 -webkit-box-shadow: rgba(0, 0, 0, 0.292969) 0px 0px 0px 0px inset;
 	 -moz-box-shadow: rgba(0, 0, 0, 0.292969) 0px 0px 0px 0px inset;
 	 box-shadow: rgba(0, 0, 0, 0.292969) 0px 0px 0px 0px inset;
+	
 	 position: absolute;
 	 
 }
@@ -59,13 +60,13 @@
 }
 
 #{id}container2 {
+	 z-index: 1;
 	 width: 314px;
 	 height: 40px;
 	 top: 2px;
 	 left: 2px;
 	
 	 position: absolute;
-	 z-index: 1;
 	 
 }
 
@@ -145,23 +146,6 @@
 	
 	 position: absolute;
 	 color: rgb(211, 48, 17);
-	 
-}
-
-#{id}dataGridVote {
-	 z-index: 12;
-	 width: 319px;
-	 height: 300px;
-	 top: 50px;
-	 left: 0px;
-	
-	 position: absolute;
-	 
-}
-
-#{id}dataGridVote .waf-dataGrid-row {
-	 font-size: 10px;
-	 font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	 
 }
 
@@ -249,17 +233,18 @@
 }
 
 #{id}checkboxVote {
+	 z-index: 2;
 	 width: 18px;
 	 height: 18px;
 	 top: 5px;
 	 left: 5px;
 	
 	 position: absolute;
-	 z-index: 2;
 	 
 }
 
 #{id}textFieldName {
+	 z-index: 6;
 	 width: 168px;
 	 height: 22px;
 	 top: 5px;
@@ -267,7 +252,6 @@
 	
 	 position: absolute;
 	 font-size: 10px;
-	 z-index: 6;
 	 
 }
 
