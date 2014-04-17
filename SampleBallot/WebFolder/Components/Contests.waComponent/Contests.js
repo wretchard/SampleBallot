@@ -42,7 +42,14 @@ function constructor (id) {
 	buttonVote.click = function buttonVote_click (event)// @startlock
 	{// @endlock
 		sources.componentMain_varCandidates.query("Vote=true")
-		//add to ballot
+		var b={}
+		b.id=sources.componentMain_varCandidates.id
+		b.Name=sources.componentMain_varCandidates.Name;
+		b.Party=sources.componentMain_varCandidates.Party;
+		b.ElectionID=sources.componentMain_varCandidates.ElectionID;
+		b.Identifier=sources.componentMain_varCandidates.Identifier;
+		b.Office=sources.componentMain_varParams.contests[sources.componentMain_varContests.id].office;
+		sources.componentMain_varBallot.addNewElement(b)
 		
 
 	};// @lock
